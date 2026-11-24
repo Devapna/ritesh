@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffe17c">
+  <meta name="description" content="Ritesh Dev is a video editor, videographer, documentary filmmaker, and digital creator based in Ghaziabad, India.">
+  <title>Ritesh Dev — Stories in motion</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --yellow: #ffe17c;
+      --charcoal: #171e19;
+      --sage: #b7c6c2;
+      --white: #ffffff;
+      --black: #000000;
+      --gray: #272727;
+      --line: 2px solid var(--black);
+      --shadow-sm: 4px 4px 0 var(--black);
+      --shadow-lg: 8px 8px 0 var(--black);
+      --heading: "Cabinet Grotesk", "Arial Black", Impact, sans-serif;
+      --body: "Satoshi", "Segoe UI", Arial, sans-serif;
+      --page-width: 1220px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+    body { margin: 0; background: var(--white); color: var(--black); font-family: var(--body); font-weight: 500; }
+    body, button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    button, a { font: inherit; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--charcoal); outline-offset: 4px; }
+    .wrap { width: min(var(--page-width), calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 16px; font-size: .78rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow::before { width: 11px; height: 11px; content: ""; display: inline-block; background: currentColor; border: 2px solid var(--black); }
+    .section-title { margin: 0; font-family: var(--heading); font-size: clamp(2.3rem, 5vw, 4.7rem); font-weight: 900; line-height: .98; letter-spacing: -.055em; }
+    .section-intro { max-width: 590px; margin: 17px 0 0; color: var(--charcoal); font-size: 1.05rem; line-height: 1.65; }
+
+    .site-header { position: sticky; z-index: 10; top: 0; background: var(--yellow); border-bottom: var(--line); }
+    .nav-inner { height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; border: 2px solid transparent; }
+    .brand-mark { display: grid; width: 42px; aspect-ratio: 1; place-items: center; background: var(--black); border: var(--line); }
+    .brand-mark svg { width: 22px; height: 22px; }
+    .brand-copy { display: grid; font-family: var(--heading); font-size: 1.08rem; font-weight: 950; letter-spacing: -.055em; line-height: .9; }
+    .brand-copy span:last-child { margin-top: 4px; font-size: .67rem; letter-spacing: .13em; }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a { padding: 9px 10px; border: 2px solid transparent; text-decoration: none; font-size: .91rem; font-weight: 800; }
+    .nav-links a:hover { border-color: var(--black); background: var(--white); }
+    .btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 11px 18px; border: var(--line); border-radius: 8px; box-shadow: var(--shadow-sm); text-align: center; text-decoration: none; font-weight: 900; transition: transform .18s cubic-bezier(.175,.885,.32,1.275), box-shadow .18s ease, background-color .18s ease; cursor: pointer; }
+    .btn:hover { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--black); }
+    .btn-dark { background: var(--black); color: var(--white); }
+    .btn-light { background: var(--white); color: var(--black); }
+    .btn-sage { background: var(--sage); color: var(--black); }
+    .menu-toggle { display: none; width: 48px; height: 44px; align-items: center; justify-content: center; border: var(--line); border-radius: 8px; background: var(--black); color: var(--white); cursor: pointer; }
+    .menu-toggle svg { width: 22px; height: 22px; }
+
+    .hero { position: relative; overflow: hidden; background-color: var(--yellow); border-bottom: var(--line); }
+    .hero::before { position: absolute; inset: 0; content: ""; background-image: radial-gradient(var(--charcoal) 1.2px, transparent 1.2px); background-size: 32px 32px; opacity: .12; pointer-events: none; }
+    .hero-grid { position: relative; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 56px; min-height: 690px; padding-block: 66px 82px; }
+    .hero-copy { max-width: 650px; }
+    .availability { display: inline-flex; align-items: center; gap: 9px; padding: 9px 13px; background: var(--white); border: var(--line); border-radius: 999px; box-shadow: var(--shadow-sm); font-size: .78rem; font-weight: 900; letter-spacing: .02em; }
+    .availability i { width: 9px; height: 9px; background: var(--sage); border: 2px solid var(--black); border-radius: 50%; }
+    h1 { max-width: 720px; margin: 23px 0 20px; font-family: var(--heading); font-size: clamp(4.15rem, 8vw, 7.3rem); font-weight: 950; line-height: .82; letter-spacing: -.075em; }
+    h1 .stroke { color: transparent; -webkit-text-stroke: 2px var(--black); }
+    .hero-lede { max-width: 570px; margin: 0; font-size: clamp(1.05rem, 1.6vw, 1.24rem); line-height: 1.65; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 29px; }
+    .hero-note { display: flex; align-items: center; gap: 11px; margin: 29px 0 0; font-size: .83rem; font-weight: 800; }
+    .note-rule { width: 38px; height: 2px; background: var(--black); }
+    .hero-art { position: relative; min-height: 465px; display: grid; place-items: center; }
+    .art-sticker { position: absolute; z-index: 2; top: 11px; right: 0; display: grid; width: 107px; aspect-ratio: 1; place-items: center; padding: 13px; background: var(--sage); border: var(--line); border-radius: 50%; box-shadow: var(--shadow-sm); font-family: var(--heading); font-size: .78rem; font-weight: 950; line-height: 1.05; text-align: center; transform: rotate(10deg); }
+    .reel-card { width: min(100%, 475px); padding: 0; overflow: hidden; background: var(--white); border: var(--line); border-radius: 15px; box-shadow: 12px 12px 0 var(--black); transform: rotate(-2deg); }
+    .reel-top { height: 47px; display: flex; align-items: center; gap: 7px; padding-inline: 15px; background: var(--black); color: var(--white); }
+    .reel-top i { width: 11px; height: 11px; display: block; border: 1px solid var(--black); border-radius: 50%; background: #ff5f57; }
+    .reel-top i:nth-child(2) { background: #febc2e; }
+    .reel-top i:nth-child(3) { background: #28c840; }
+    .reel-top span { margin-left: auto; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .reel-screen { position: relative; min-height: 303px; display: grid; grid-template-columns: 1.1fr .9fr; grid-template-rows: 1.13fr .87fr; gap: 10px; padding: 15px; background: var(--sage); }
+    .scene { position: relative; min-height: 115px; overflow: hidden; border: var(--line); }
+    .scene-main { grid-row: span 2; min-height: 100%; background: var(--charcoal); }
+    .scene-main::before { position: absolute; top: 17%; left: 52%; width: 24px; aspect-ratio: 1; content: ""; border: 2px solid var(--black); border-radius: 50%; background: var(--yellow); }
+    .scene-main::after { position: absolute; right: 0; bottom: 0; left: 0; height: 57%; content: ""; background: var(--sage); clip-path: polygon(0 48%, 22% 15%, 38% 39%, 64% 0, 100% 44%, 100% 100%, 0 100%); }
+    .scene-side { background: var(--yellow); }
+    .scene-side::before { position: absolute; inset: 0; content: ""; background: var(--charcoal); clip-path: polygon(0 70%, 37% 35%, 62% 54%, 100% 12%, 100% 100%, 0 100%); }
+    .scene-side:last-child { background: var(--white); }
+    .scene-side:last-child::before { background: var(--sage); clip-path: polygon(0 22%, 100% 0, 100% 18%, 0 40%, 0 62%, 100% 40%, 100% 58%, 0 80%, 0 100%, 100% 78%, 100% 100%, 0 100%); }
+    .scene-label { position: absolute; z-index: 1; left: 13px; bottom: 12px; padding: 5px 8px; background: var(--yellow); border: var(--line); font-family: var(--heading); font-size: .7rem; font-weight: 950; text-transform: uppercase; }
+    .reel-caption { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 16px; }
+    .reel-caption strong { font-family: var(--heading); font-size: 1.05rem; }
+    .reel-caption span { font-size: .72rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; }
+    .art-caption { position: absolute; bottom: 3px; left: 5px; max-width: 155px; padding: 11px 13px; background: var(--white); border: var(--line); box-shadow: var(--shadow-sm); font-size: .76rem; font-weight: 800; line-height: 1.3; transform: rotate(3deg); }
+
+    .tool-ribbon { overflow: hidden; background: var(--charcoal); border-bottom: var(--line); color: var(--sage); }
+    .ribbon-track { width: max-content; display: flex; align-items: center; gap: 0; padding: 22px 0; animation: drift 36s linear infinite; }
+    .ribbon-group { display: flex; align-items: center; gap: 32px; white-space: nowrap; font-family: var(--heading); font-size: 1.3rem; font-weight: 900; letter-spacing: -.025em; }
+    .ribbon-group span:nth-child(even) { opacity: .55; }
+    .ribbon-group b { color: var(--yellow); font-size: 1.2rem; }
+    @keyframes drift { to { transform: translateX(-50%); } }
+
+    .intro-section { padding-block: 104px; background: var(--white); }
+    .intro-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 75px; align-items: start; }
+    .intro-aside { position: sticky; top: 110px; }
+    .intro-stat { display: flex; align-items: baseline; gap: 13px; margin-top: 30px; padding-top: 20px; border-top: var(--line); }
+    .intro-stat strong { font-family: var(--heading); font-size: 3.5rem; letter-spacing: -.07em; }
+    .intro-stat span { max-width: 155px; font-size: .87rem; font-weight: 800; line-height: 1.3; }
+    .intro-copy { font-size: 1.18rem; line-height: 1.85; }
+    .intro-copy p { margin: 0 0 21px; }
+    .intro-copy p:last-child { margin-bottom: 0; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .tag { padding: 8px 12px; background: var(--sage); border: var(--line); border-radius: 999px; font-size: .76rem; font-weight: 900; }
+
+    .work-section { padding-block: 100px 112px; background: var(--yellow); border-block: var(--line); }
+    .work-head { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 39px; }
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    .work-card { position: relative; min-height: 365px; display: flex; flex-direction: column; overflow: hidden; padding: 23px; background: var(--white); border: var(--line); border-radius: 16px; box-shadow: var(--shadow-sm); transition: transform .2s ease, box-shadow .2s ease; }
+    .work-card:hover { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--black); }
+    .work-card:nth-child(2) { background: var(--sage); }
+    .work-card:nth-child(3) { background: var(--charcoal); color: var(--white); }
+    .work-card:nth-child(4) { background: var(--yellow); }
+    .work-visual { position: relative; height: 165px; display: grid; place-items: center; margin: -23px -23px 22px; overflow: hidden; border-bottom: var(--line); background: var(--sage); }
+    .work-card:nth-child(2) .work-visual { background: var(--yellow); }
+    .work-card:nth-child(3) .work-visual { background: var(--gray); }
+    .work-card:nth-child(4) .work-visual { background: var(--white); }
+    .visual-frame { width: 74%; height: 108px; display: flex; align-items: center; justify-content: center; padding: 14px; border: var(--line); background: var(--white); box-shadow: var(--shadow-sm); transform: rotate(-3deg); }
+    .visual-frame strong { font-family: var(--heading); font-size: 1.75rem; line-height: .9; letter-spacing: -.06em; text-align: center; }
+    .work-card:nth-child(3) .visual-frame { background: var(--yellow); }
+    .work-card:nth-child(4) .visual-frame { transform: rotate(3deg); }
+    .work-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 13px; font-size: .69rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+    .work-card h3 { margin: 0; font-family: var(--heading); font-size: clamp(1.55rem, 3vw, 2.2rem); line-height: .98; letter-spacing: -.05em; }
+    .work-card p { max-width: 510px; margin: 12px 0 0; font-size: .94rem; line-height: 1.55; }
+    .work-arrow { position: absolute; right: 23px; bottom: 21px; width: 38px; height: 38px; display: grid; place-items: center; border: var(--line); border-radius: 50%; background: var(--yellow); color: var(--black); font-size: 1.2rem; font-weight: 900; }
+    .work-card:nth-child(3) .work-arrow { background: var(--white); }
+
+    .process-section { padding-block: 102px 112px; background: var(--charcoal); color: var(--white); }
+    .process-section .eyebrow { color: var(--yellow); }
+    .process-section .eyebrow::before { border-color: var(--yellow); }
+    .process-section .section-intro { color: var(--sage); }
+    .steps { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 65px; }
+    .steps::before { position: absolute; top: 33px; left: 14%; right: 14%; height: 2px; content: ""; background: var(--gray); }
+    .step { position: relative; z-index: 1; }
+    .step-number { width: 68px; height: 68px; display: grid; place-items: center; margin-bottom: 24px; border: 4px solid var(--sage); border-radius: 50%; background: var(--charcoal); color: var(--white); font-family: var(--heading); font-size: 1.15rem; font-weight: 950; box-shadow: 0 0 0 4px var(--charcoal); }
+    .step:nth-child(2) .step-number { border-color: var(--yellow); }
+    .step:nth-child(3) .step-number { border-color: var(--white); }
+    .step h3 { margin: 0; font-family: var(--heading); font-size: 1.7rem; letter-spacing: -.04em; }
+    .step p { max-width: 315px; margin: 10px 0 0; color: var(--sage); font-size: .95rem; line-height: 1.65; }
+
+    .experience-section { padding-block: 102px; background: var(--white); }
+    .experience-grid { display: grid; grid-template-columns: .82fr 1.18fr; gap: 80px; }
+    .experience-list { border-top: var(--line); }
+    .experience-item { display: grid; grid-template-columns: 125px 1fr; gap: 22px; padding: 23px 0; border-bottom: var(--line); }
+    .experience-date { padding-top: 4px; font-size: .76rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .experience-item h3 { margin: 0; font-family: var(--heading); font-size: 1.35rem; line-height: 1.05; letter-spacing: -.035em; }
+    .experience-item p { margin: 9px 0 0; color: var(--charcoal); font-size: .91rem; line-height: 1.6; }
+    .learning-card { margin-top: 28px; padding: 20px; background: var(--sage); border: var(--line); border-radius: 12px; box-shadow: var(--shadow-sm); }
+    .learning-card strong { display: block; font-family: var(--heading); font-size: 1.18rem; }
+    .learning-card p { margin: 8px 0 0; font-size: .87rem; line-height: 1.55; }
+
+    .contact-section { padding-block: 105px; background: var(--yellow); border-top: var(--line); }
+    .contact-panel { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 35px; }
+    .contact-panel h2 { max-width: 780px; margin: 0; font-family: var(--heading); font-size: clamp(3rem, 6vw, 6.2rem); font-weight: 950; line-height: .88; letter-spacing: -.07em; }
+    .contact-panel p { max-width: 570px; margin: 21px 0 0; font-size: 1.04rem; line-height: 1.6; }
+    .contact-actions { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
+    .site-footer { padding-block: 57px 28px; background: var(--charcoal); color: var(--white); }
+    .footer-grid { display: grid; grid-template-columns: 1.3fr .8fr .8fr 1fr; gap: 35px; padding-bottom: 43px; }
+    .footer-brand .brand { color: var(--white); }
+    .footer-brand p { max-width: 260px; margin: 17px 0 0; color: var(--sage); font-size: .89rem; line-height: 1.6; }
+    .footer-col h3 { margin: 0 0 14px; color: var(--yellow); font-family: var(--heading); font-size: .92rem; letter-spacing: .04em; text-transform: uppercase; }
+    .footer-col a { display: table; padding: 5px 0; border: 2px solid transparent; color: var(--white); font-size: .86rem; text-decoration: none; }
+    .footer-col a:hover { color: var(--yellow); }
+    .social-links { display: flex; gap: 9px; margin-top: 18px; }
+    .social-links a { width: 40px; height: 40px; display: grid; place-items: center; padding: 0; border: 2px solid var(--sage); background: var(--gray); color: var(--white); font-size: .68rem; font-weight: 900; }
+    .social-links a:hover { background: var(--yellow); color: var(--black); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 19px; border-top: 1px solid var(--gray); color: var(--sage); font-size: .74rem; }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr .9fr; gap: 25px; min-height: 610px; }
+      .hero-art { min-height: 380px; }
+      .reel-screen { min-height: 265px; }
+      .intro-grid, .experience-grid { gap: 45px; }
+      .footer-grid { grid-template-columns: 1.2fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 700px) {
+      html { scroll-padding-top: 78px; }
+      .wrap { width: min(var(--page-width), calc(100% - 34px)); }
+      .nav-inner { height: 70px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-cta { display: none; }
+      .nav-links { position: absolute; top: 70px; left: 0; right: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 10px 17px 18px; background: var(--yellow); border-bottom: var(--line); }
+      .nav-links[data-open="true"] { display: flex; }
+      .nav-links a { padding: 13px 12px; border-bottom: 2px solid rgba(0,0,0,.18); }
+      .nav-links a:last-child { border-bottom: 0; }
+      .hero-grid { grid-template-columns: 1fr; gap: 22px; padding-block: 57px 65px; }
+      h1 { max-width: 570px; font-size: clamp(4rem, 17vw, 6.5rem); }
+      .hero-art { min-height: 345px; margin: 2px 14px 0 0; }
+      .reel-card { max-width: 490px; }
+      .reel-screen { min-height: 250px; }
+      .art-sticker { right: -12px; top: 0; width: 91px; font-size: .7rem; }
+      .intro-section, .work-section, .process-section, .experience-section { padding-block: 76px; }
+      .intro-grid, .experience-grid { grid-template-columns: 1fr; gap: 38px; }
+      .intro-aside { position: static; }
+      .intro-stat { max-width: 260px; margin-top: 22px; }
+      .work-head { align-items: start; flex-direction: column; }
+      .work-grid { grid-template-columns: 1fr; gap: 19px; }
+      .work-card { min-height: 345px; }
+      .steps { grid-template-columns: 1fr; gap: 28px; margin-top: 47px; }
+      .steps::before { top: 35px; bottom: 35px; left: 33px; right: auto; width: 2px; height: auto; }
+      .step { display: grid; grid-template-columns: 68px 1fr; column-gap: 20px; }
+      .step-number { grid-row: span 2; margin: 0; }
+      .step h3 { align-self: end; }
+      .step p { max-width: 100%; margin-top: 5px; }
+      .experience-item { grid-template-columns: 94px 1fr; gap: 14px; }
+      .contact-section { padding-block: 76px; }
+      .contact-panel { grid-template-columns: 1fr; align-items: start; }
+      .contact-actions { flex-direction: row; flex-wrap: wrap; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 29px 20px; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 440px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { width: 100%; }
+      .hero-art { min-height: 300px; margin-right: 8px; }
+      .reel-screen { min-height: 210px; gap: 7px; padding: 10px; }
+      .scene { min-height: 90px; }
+      .reel-top { height: 39px; }
+      .art-caption { bottom: -7px; left: -5px; }
+      .experience-item { grid-template-columns: 1fr; gap: 7px; }
+      .contact-actions { flex-direction: column; align-items: stretch; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 7px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Ritesh Dev home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M13.8 2.5 5.4 13h5.3l-.7 8.5L18.6 11h-5.2l.4-8.5Z" fill="#ffe17c" stroke="#ffe17c" stroke-linejoin="round" stroke-width="1.5"/></svg></span>
+        <span class="brand-copy"><span>RITESH</span><span>DEV / CREATIVE</span></span>
+      </a>
+      <nav class="nav-links" id="primary-nav" data-open="false" aria-label="Main navigation">
+        <a href="#work">Selected work</a><a href="#about">About</a><a href="#process">Process</a><a href="#experience">Experience</a>
+      </nav>
+      <a class="btn btn-dark nav-cta" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="availability"><i aria-hidden="true"></i> INDEPENDENT CREATIVE · SINCE 2020</span>
+          <h1>Stories<br>that <span class="stroke">move.</span></h1>
+          <p class="hero-lede">I’m Ritesh Dev, a video editor and documentary storyteller who takes a project from the first idea to the final frame.</p>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#work">Explore selected work <span aria-hidden="true">↓</span></a>
+            <a class="btn btn-light" href="mailto:riteshdeevseth@gmail.com">Start a conversation <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hero-note"><span class="note-rule" aria-hidden="true"></span> Based in Ghaziabad, India · 6 years in creative production</p>
+        </div>
+        <div class="hero-art" aria-label="A visual collage representing film, editing, and storytelling">
+          <div class="art-sticker">IDEA<br>→ SHOOT<br>→ STORY</div>
+          <div class="reel-card">
+            <div class="reel-top"><i></i><i></i><i></i><span>Story / 001</span></div>
+            <div class="reel-screen">
+              <div class="scene scene-main"><span class="scene-label">A world between</span></div>
+              <div class="scene scene-side"></div>
+              <div class="scene scene-side"></div>
+            </div>
+            <div class="reel-caption"><strong>Frames with feeling.</strong><span>01:24 / 04:18</span></div>
+          </div>
+          <div class="art-caption">Direction, edit, colour<br>and a little bit of wonder.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="tool-ribbon" aria-label="Creative and technical tools">
+      <div class="ribbon-track" aria-hidden="true">
+        <div class="ribbon-group"><span>PREMIERE PRO</span><b>✳</b><span>AFTER EFFECTS</span><b>✳</b><span>DOCUMENTARY</span><b>✳</b><span>CAMERA</span><b>✳</b><span>REACT.JS</span><b>✳</b><span>STORY FIRST</span><b>✳</b></div>
+        <div class="ribbon-group"><span>PREMIERE PRO</span><b>✳</b><span>AFTER EFFECTS</span><b>✳</b><span>DOCUMENTARY</span><b>✳</b><span>CAMERA</span><b>✳</b><span>REACT.JS</span><b>✳</b><span>STORY FIRST</span><b>✳</b></div>
+      </div>
+    </div>
+
+    <section class="intro-section" id="about">
+      <div class="wrap intro-grid">
+        <div class="intro-aside">
+          <p class="eyebrow">A little about me</p>
+          <h2 class="section-title">Creative eye.<br>Curious mind.</h2>
+          <div class="intro-stat"><strong>06+</strong><span>years making and shaping video stories</span></div>
+        </div>
+        <div class="intro-copy">
+          <p>I work across video editing, cinematography, and digital storytelling. From wedding films and event highlights to researched documentary pieces, I enjoy finding the human detail that makes a story stay with you.</p>
+          <p>My process runs end to end: concept and scripting, camera and lighting, edit and colour, sound sync, visual effects, thumbnails, and publishing. I also bring a technical side to creative work, with experience in web development and AI-assisted workflows.</p>
+          <p>Outside client work, I volunteer in digital content creation and community storytelling. I’ve helped create more than 500 social posts, videos, shorts, and stories for multi-platform communities.</p>
+          <div class="skill-tags" aria-label="Areas of work">
+            <span class="tag">Video editing</span><span class="tag">Cinematography</span><span class="tag">Documentary</span><span class="tag">Motion graphics</span><span class="tag">Web development</span><span class="tag">AI workflows</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="work-section" id="work">
+      <div class="wrap">
+        <div class="work-head">
+          <div><p class="eyebrow">Selected work</p><h2 class="section-title">A few things<br>made with intent.</h2></div>
+          <p class="section-intro">A mix of film, community storytelling, and digital product work. Each piece starts with a different question and finds its own form.</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card">
+            <div class="work-visual"><div class="visual-frame"><strong>DREAMS<br>BETWEEN<br>TWO WORLDS</strong></div></div>
+            <div class="work-meta"><span>AI film series</span><span>01 / 04</span></div>
+            <h3>Dreams Between Two Worlds</h3>
+            <p>Directed, edited, and composited Episode 01, “The First Dream,” with custom bioluminescent visual effects and colour grading.</p>
+            <span class="work-arrow" aria-hidden="true">↗</span>
+          </article>
+          <article class="work-card">
+            <div class="work-visual"><div class="visual-frame"><strong>THE DAY,<br>IN MOTION.</strong></div></div>
+            <div class="work-meta"><span>Wedding & events</span><span>02 / 04</span></div>
+            <h3>Wedding & event films</h3>
+            <p>Cinematic highlights and event films, with on-location shooting, camera operation, lighting, and post-production.</p>
+            <span class="work-arrow" aria-hidden="true">↗</span>
+          </article>
+          <article class="work-card">
+            <div class="work-visual"><div class="visual-frame"><strong>INVASSIST<br>PRO</strong></div></div>
+            <div class="work-meta"><span>Web application</span><span>03 / 04</span></div>
+            <h3>InvAssist PRO</h3>
+            <p>An inventory and billing web application concept, built around structured data and a responsive user interface.</p>
+            <span class="work-arrow" aria-hidden="true">↗</span>
+          </article>
+          <article class="work-card">
+            <div class="work-visual"><div class="visual-frame"><strong>COMMUNITY<br>IN EVERY<br>FRAME</strong></div></div>
+            <div class="work-meta"><span>Community media</span><span>04 / 04</span></div>
+            <h3>Stories that bring people together</h3>
+            <p>Volunteer video production, documentary and informational content, digital publishing, and creative support for Radha Soami Satsang Beas.</p>
+            <span class="work-arrow" aria-hidden="true">↗</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-section" id="process">
+      <div class="wrap">
+        <p class="eyebrow">How I work</p>
+        <h2 class="section-title">From a loose idea<br>to a clear story.</h2>
+        <p class="section-intro">A thoughtful process leaves room for creative discovery while keeping the work moving toward a finished piece.</p>
+        <div class="steps">
+          <article class="step"><div class="step-number">01</div><h3>Find the story</h3><p>Research, listen, and shape the core idea. Set the tone, write a direction, and decide what the audience should feel.</p></article>
+          <article class="step"><div class="step-number">02</div><h3>Make the frames</h3><p>Plan and capture the material with care, whether the project calls for a camera, a screen, or a little experimentation.</p></article>
+          <article class="step"><div class="step-number">03</div><h3>Finish with feeling</h3><p>Edit for clarity and rhythm, then refine colour, sound, and effects before preparing the work for its audience.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience-section" id="experience">
+      <div class="wrap experience-grid">
+        <div>
+          <p class="eyebrow">Experience & toolkit</p>
+          <h2 class="section-title">Grounded in craft.<br>Always learning.</h2>
+          <p class="section-intro">A practical creative background paired with an ongoing interest in technology, design, and the way people use media.</p>
+          <div class="learning-card"><strong>Currently studying</strong><p>Master of Computer Applications at Sikkim Manipal University, expected completion September 2027.</p></div>
+          <div class="skill-tags"><span class="tag">Hindi</span><span class="tag">Bhojpuri</span><span class="tag">English</span></div>
+        </div>
+        <div class="experience-list">
+          <article class="experience-item"><div class="experience-date">2020 — now</div><div><h3>Freelance video editor & videographer</h3><p>Independent paid projects across wedding films, cinematic highlights, event videos, documentary work, and social content.</p></div></article>
+          <article class="experience-item"><div class="experience-date">2021 — now</div><div><h3>Volunteer video editor & digital content creator</h3><p>Video shooting, editing, creative direction, documentary and informational content, and digital publishing with Radha Soami Satsang Beas.</p></div></article>
+          <article class="experience-item"><div class="experience-date">2021 — now</div><div><h3>Digital community manager</h3><p>Multi-platform community content, audience communication, YouTube optimization, thumbnails, and creative collaboration.</p></div></article>
+          <div class="skill-tags" aria-label="Tools and skills">
+            <span class="tag">Premiere Pro</span><span class="tag">After Effects</span><span class="tag">Photoshop</span><span class="tag">CapCut</span><span class="tag">JavaScript</span><span class="tag">React.js</span><span class="tag">Python</span><span class="tag">HTML & CSS</span><span class="tag">MongoDB</span><span class="tag">SQL</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="wrap contact-panel">
+        <div><p class="eyebrow">Have a story to tell?</p><h2>Let’s make<br>something matter.</h2><p>Have a film, documentary, event, or digital project in mind? Tell me what you’re working on and we can start from there.</p></div>
+        <div class="contact-actions"><a class="btn btn-dark" href="mailto:riteshdeevseth@gmail.com">Email Ritesh <span aria-hidden="true">↗</span></a><a class="btn btn-light" href="tel:+919341952305">Call +91 93419 52305</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#top" aria-label="Ritesh Dev home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M13.8 2.5 5.4 13h5.3l-.7 8.5L18.6 11h-5.2l.4-8.5Z" fill="#ffe17c" stroke="#ffe17c" stroke-linejoin="round" stroke-width="1.5"/></svg></span><span class="brand-copy"><span>RITESH</span><span>DEV / CREATIVE</span></span></a>
+          <p>Video editor, videographer, documentary filmmaker, and digital creator. Ghaziabad, Uttar Pradesh, India.</p>
+          <div class="social-links" aria-label="Social links">
+            <a href="https://www.linkedin.com/in/ritesh-dev-69b37137a" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
+            <a href="https://www.youtube.com/@devbro.creator" target="_blank" rel="noreferrer" aria-label="YouTube">YT</a>
+            <a href="https://www.youtube.com/@redacteddocumentary" target="_blank" rel="noreferrer" aria-label="Documentary channel">RD</a>
+          </div>
+        </div>
+        <div class="footer-col"><h3>Explore</h3><a href="#work">Selected work</a><a href="#about">About Ritesh</a><a href="#process">Process</a><a href="#experience">Experience</a></div>
+        <div class="footer-col"><h3>What I do</h3><a href="#work">Video & film</a><a href="#work">Documentary</a><a href="#work">Digital content</a><a href="#work">Web concepts</a></div>
+        <div class="footer-col"><h3>Get in touch</h3><a href="mailto:riteshdeevseth@gmail.com">riteshdeevseth@gmail.com</a><a href="tel:+919341952305">+91 93419 52305</a><a href="https://www.youtube.com/@radhasoamishimran" target="_blank" rel="noreferrer">Radha Soami Shimran ↗</a></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> Ritesh Dev</span><span>Made for stories worth remembering.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('#primary-nav');
+    menuButton.addEventListener('click', () => {
+      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+      nav.dataset.open = String(!isOpen);
+    });
+    nav.addEventListener('click', (event) => {
+      if (event.target.closest('a')) {
+        nav.dataset.open = 'false';
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open navigation');
+      }
+    });
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
